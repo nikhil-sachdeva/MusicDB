@@ -11,7 +11,7 @@ app.use(express.static('./front'))
 const connection = mysql.createConnection({
 		host     : 'localhost',
 		user     : 'root',
-		password : '',
+		password : 'Nikhil99',
 		database : 'MUSIC'
 })
 
@@ -23,6 +23,34 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 app.get('/songs',(req,res) => {
 	connection.query("SELECT * FROM songs",(err,rows,query) =>{
+		res.json(rows)
+	})
+})
+
+app.post('/add_song', (req,res) => {
+	console.log("adding new song")
+	const name = req.body.name
+	const genre = req.body.genre
+	const duration = req.body.duration
+	const artist = req.body.artist
+	const query = "insert into songs (SongName,Genre,Duration,Artist) values (?,?,?,?);"
+	connection.query(query,[name,genre,duration,artist],(err, results, fields) => {
+		if(err){
+			console.log("Errorrrr")
+			console.log(err.message)
+			res.sendStatus(500)
+			return
+		}
+		
+		console.log(results)
+		res.end()
+
+
+	})
+})
+app.get('/execute',(req,res) => {
+	const q = req.body.query;
+	connection.query(q,(err,rows,query) =>{
 		res.json(rows)
 	})
 })

@@ -19,7 +19,7 @@ request.onload = function() {
       cell1.innerHTML = song.SongID;
       cell2.innerHTML = song.SongName;
       cell3.innerHTML = song.Genre;
-      cell4.innerHTML = song.Duration/60;
+      cell4.innerHTML = Math.trunc(song.Duration/60) + "min " + song.Duration%60+"sec";
       cell5.innerHTML = song.Artist;
       i=i+1;
   
