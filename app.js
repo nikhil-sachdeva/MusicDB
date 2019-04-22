@@ -22,10 +22,42 @@ var server = app.listen(process.env.PORT || 8080, function () {
 });
 
 app.get('/songs',(req,res) => {
-	connection.query("SELECT * FROM songs",(err,rows,query) =>{
+	connection.query("SELECT * FROM songs ORDER BY SongName",(err,rows,query) =>{
 		res.json(rows)
 	})
 })
+
+//distinct artist, songs
+app.get('/allartists',(req,res) => {
+	connection.query("SELECT DISTINCT Artist, SongName FROM songs",(err,rows,query) =>{
+		res.json(rows)
+	})
+})
+//songname starts with s
+app.get('/ssongss',(req,res) => {
+	connection.query("SELECT * FROM songs WHERE SongName LIKE 's%' ",(err,rows,query) =>{
+		res.json(rows)
+	})
+})
+
+//genre =pop
+app.get('/pop',(req,res) => {
+	connection.query("SELECT * FROM songs WHERE Genre='pop' ORDER BY ",(err,rows,query) =>{
+		res.json(rows)
+	})
+})
+
+//duration
+app.get('/time',(req,res) => {
+	connection.query("SELECT SongName, Duration FROM songs where Duration<'300'",(err,rows,query) =>{
+		res.json(rows)
+	})
+})
+
+
+
+
+
 
 app.post('/add_song', (req,res) => {
 	console.log("adding new song")
