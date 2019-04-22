@@ -26,13 +26,15 @@
         <div class="jumbotron">
           <h1>Music Database Project</h1> 
           <p>A project in Database Management of Music.</p> 
-          <p>Query executed here is "SELECT * FROM SONGS"</p> 
+          
     </div>
+  <h3>Query executed here is :</h3>
+  <div class="well">SELECT * FROM SONGS;</div>
 <div class='container'>
         <table class="table" id="songTable">
                 <thead>
                   <tr>
-                   <th ><a href="javascript:sortTable(0);"> ID</a> </th>
+                   <th ><a href="javascript:sortTable(0);">ID</a> </th>
                     <th ><a href="javascript:sortTable(1);">Song Name</a></th>
                     <th ><a href="javascript:sortTable(2);">Genre</a></th>
                     <th><a href="javascript:sortTable(3);">Duration</a></th>
@@ -111,7 +113,10 @@ function sortTable(n) {
 <br>
 <hr>
 <h1 class="container">Add a Song</h1>
-
+<div class="container">
+<h3>Query executed here is :</h3>
+<div class="well">INSERT INTO songs (SongName,Genre,Duration,Artist) values (?,?,?,?);</div>
+</div>
 <div class="container-fluid">
   <form class="form-horizontal" action="/add_song" method="POST">
     <div class="form-group">
