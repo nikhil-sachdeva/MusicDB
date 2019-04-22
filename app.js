@@ -48,11 +48,5 @@ app.post('/add_song', (req,res) => {
 
 	})
 })
-app.get('/execute',(req,res) => {
-	const q = req.body.query;
-	connection.query(q,(err,rows,query) =>{
-		res.json(rows)
-	})
-})
 
 // created using create table songs ( SongID int AUTO_INCREMENT, SongName varchar(30), Genre varchar(30), Duration int, Artist varchar(30), PRIMARY KEY (SongID));
